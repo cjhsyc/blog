@@ -1,0 +1,55 @@
+base_info:
+  title: cjhsyc
+  author: cjhsyc
+  url: https://cjhsyc.github.io/
+
+style:
+  avatar: /images/头像.jpg
+  favicon: /images/头像.jpg
+#  primary_color: "#FFCCCC"
+  scroll:
+    percent:
+      enable: true
+  first_screen:
+    enable: true
+    description: 世界这么大，人生这么长，总会有这么一个人，让你想要温柔的以待。——《哈尔的移动城堡》
+
+#设置第三方社交链接。
+social_contact:
+  enable: true
+  links:
+    github: https://github.com/cjhsyc              # your GitHub URL
+    email: 649798358@qq.com               # your email
+
+#网站头部导航菜单，如需新增导航菜单，按上面格式填写，同时需要创建相对应的 Hexo 页面。
+menu:
+  Home: /
+  Archives: /archives
+
+#该配置项用于设置文章TOC目录结构，非常实用的功能，可以快速查看文章目录结构和跳转，建议开启。
+toc:
+  enable: true
+  number: true
+  expand_all: true
+  init_open: true
+
+#该配置项用于开启文章内容页的文章版权信息模块。
+copyright_info:
+  enable: true
+
+#该配置项用于设置网站搜索功能，非常实用，建议开启。开启后，头部导航栏右侧将出现搜索按钮。
+local_search:
+  enable: true
+
+#该配置项用于开启部分主题资源（JS 文件、字体文件等）的 CDN 加速功能。
+cdn:
+  enable: true
+
+#该配置项用于开启主题的 PJAX 功能，带来单页应用的体验。
+pjax:
+  enable: true
+
+#该配置项用于设置网站底部的信息展示。
+footer:
+  since: 2022      # the starting year of your website, Can be null
+  icp:             # ICP record number of your website, Can be null
