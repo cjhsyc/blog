@@ -1,30 +1,44 @@
 base_info:
-  title: cjhsyc
-  author: cjhsyc
+  title: 灵感胜于汗水
+  author: 灵感胜于汗水
   url: https://cjhsyc.github.io/
 
 style:
-  avatar: /images/头像.jpg
-  favicon: /images/头像.jpg
+  avatar: https://cdn.jsdelivr.net/gh/cjhsyc/image-hosting@master/头像.677yiujw5980.webp
+  favicon: https://cdn.jsdelivr.net/gh/cjhsyc/image-hosting@master/头像.677yiujw5980.webp
 #  primary_color: "#FFCCCC"
   scroll:
     percent:
       enable: true
   first_screen:
     enable: true
-    description: 世界这么大，人生这么长，总会有这么一个人，让你想要温柔的以待。——《哈尔的移动城堡》
+    background_img: https://cdn.jsdelivr.net/gh/cjhsyc/image-hosting@master/罗小黑战记.2g12vx9z84u8.webp
+    description:
+#    世界这么大，人生这么长，总会有这么一个人，让你想要温柔的以待。——《哈尔的移动城堡》
 
 #设置第三方社交链接。
 social_contact:
   enable: true
   links:
-    github: https://github.com/cjhsyc              # your GitHub URL
+    github: https://github.com/cjhsyc     # your GitHub URL
     email: 649798358@qq.com               # your email
+    weixin: https://cdn.jsdelivr.net/gh/cjhsyc/image-hosting@master/微信.6rwxr6q5nvw0.webp   # your WeChat QR-Code URL
 
 #网站头部导航菜单，如需新增导航菜单，按上面格式填写，同时需要创建相对应的 Hexo 页面。
 menu:
   Home: /
   Archives: /archives
+  About: /about
+
+#该配置项用于设置是否显示文章字数统计、阅读时长和作者标识。
+post:
+  # Author label
+  author_label:
+    enable: false
+    auto: false  # if true, show Lv1, Lv2, Lv3... , If false, show custom label
+    # label array item can be one or more
+    custom_label_list: [ "镜HSY子" ]
+
 
 #该配置项用于设置文章TOC目录结构，非常实用的功能，可以快速查看文章目录结构和跳转，建议开启。
 toc:
