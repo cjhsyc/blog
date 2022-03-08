@@ -24,14 +24,32 @@ social_contact:
     email: 649798358@qq.com               # your email
     weixin: https://cdn.jsdelivr.net/gh/cjhsyc/image-hosting@master/微信.6rwxr6q5nvw0.webp   # your WeChat QR-Code URL
 
+#  该配置项用于设置首页文章块底部的标签和分类信息显示。
+home_article:
+  category:
+    enable: false     # show category in home page article block
+    limit: 3          # max number of categories shown in home page article block
+  tag:
+    enable: true     # show tags in home page article block
+    limit: 5          # max number of tags shown in home page article block
+
 #网站头部导航菜单，如需新增导航菜单，按上面格式填写，同时需要创建相对应的 Hexo 页面。
 menu:
   Home: /
   Archives: /archives
+#  Categories: /categories
   About: /about
 
 #该配置项用于设置是否显示文章字数统计、阅读时长和作者标识。
 post:
+  # Post word count
+  # Dependencies: hexo-wordcount (npm install hexo-wordcount)
+  # See: https://github.com/willin/hexo-wordcount
+  word_count:
+    enable: true
+    wordcount: true  # word count, one article
+    min2read: false   # time to read, one article
+
   # Author label
   author_label:
     enable: false
@@ -39,6 +57,10 @@ post:
     # label array item can be one or more
     custom_label_list: [ "镜HSY子" ]
 
+#  该配置项用于设置代码复制功能，开启后可一键复制代码到剪贴板。
+code_copy:
+  enable: true
+  style: default        # values: default | mac
 
 #该配置项用于设置文章TOC目录结构，非常实用的功能，可以快速查看文章目录结构和跳转，建议开启。
 toc:
@@ -46,6 +68,16 @@ toc:
   number: true
   expand_all: true
   init_open: true
+
+#  该配置项用于设置网站计数，Keep 主题内置不蒜子计数，无需额外配置，直接选择你要开启的计数项即可。
+website_count:
+  # busuanzi
+  # See: http://ibruce.info/2015/04/04/busuanzi/
+  busuanzi_count:
+    enable: true
+    site_uv: true
+    site_pv: true
+    page_pv: true
 
 #该配置项用于开启文章内容页的文章版权信息模块。
 copyright_info:
