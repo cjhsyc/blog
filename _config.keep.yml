@@ -37,7 +37,8 @@ home_article:
 menu:
   Home: /
   Archives: /archives
-#  Categories: /categories
+  Categories: /categories
+  tags: /tags
   About: /about
 
 #该配置项用于设置是否显示文章字数统计、阅读时长和作者标识。

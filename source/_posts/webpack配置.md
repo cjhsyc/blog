@@ -2,6 +2,8 @@
 title: webpack配置
 date: 2022-03-07 23:19:37
 tags: webpack
+categories: 
+    [工程化]
 ---
 # webpack.config.js
 
