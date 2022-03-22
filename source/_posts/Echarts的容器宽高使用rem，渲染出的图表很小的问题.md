@@ -2,7 +2,7 @@
 title: Echarts的容器宽高使用rem，渲染出的图表很小的问题
 date: 2022-03-06 19:54:11
 tags: Echarts
-categories: [问题,Echarts]
+categories: [数据可视化,Echarts]
 ---
 主要是因为div还没有创建出来echarts就已经加载了，因为获取不到宽高，所以会缩小在一起。
 参考了几篇文章，我在echarts配置后加入如下代码，解决了问题：
