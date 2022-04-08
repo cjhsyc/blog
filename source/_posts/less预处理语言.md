@@ -259,12 +259,16 @@ categories: [样式,less]
 
 # 导入
 
+导入其他less文件
+
 ```less
 @import "./assets/style.less"
 @import (reference) "./assets/style.less"//添加reference后，未被调用的代码不加载
 ```
 
 
+
+[参考视频](https://www.bilibili.com/video/BV1jM4y1c778?t=1.1)
 
 
 
