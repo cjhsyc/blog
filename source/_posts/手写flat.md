@@ -1,0 +1,50 @@
+---
+title: 手写flat
+date: 2022-04-18 15:21:29
+categories:
+- [手写]
+- [JavaScript]
+tags:
+- flat
+---
+
+# 手写flat（数组扁平化）
+
+```js
+Array.prototype._flat=function (depth=1){
+  function flatten(arr,depth){
+    if(depth<=0) return [...arr]
+    return arr.reduce((pre,cur)=>{
+      if (Array.isArray(cur)) pre.push(...flatten(cur,depth-1)) //是数组，递归
+      else pre.push(cur) //不是数组，直接加入pre
+      return pre
+    },[])
+  }
+  return flatten(this,depth)
+}
+```
+
+```js
+const arr=[1,[2,3],[4,[5,6]],7]
+console.log(arr._flat()) //[1, 2, 3, 4, [5, 6], 7]
+console.log(arr._flat(1)) //[1, 2, 3, 4, [5, 6], 7]
+console.log(arr._flat(2)) //[1, 2, 3, 4, 5, 6, 7]
+console.log(arr._flat(Infinity)) //[1, 2, 3, 4, 5, 6, 7]
+```
+
+代码简化：
+
+```js
+Array.prototype._flat = function (depth = 1) {
+  function flatten(arr, depth) {
+    return depth <= 0 ?
+        [...arr] : arr.reduce((pre, cur) => Array.isArray(cur) ?
+            [...pre, ...flatten(cur, depth - 1)] : [...pre, cur], [])
+  }
+  return flatten(this, depth)
+}
+```
+
+
+
+[参考视频](https://www.bilibili.com/video/BV1tL411M7hb?p=17&t=1067.8)
