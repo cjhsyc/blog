@@ -10,6 +10,7 @@ tags:
 - 图片懒加载
 - 插件
 - 自定义指令
+- IntersectionObserver
 ---
 
 # vue-lazyload
@@ -334,3 +335,81 @@ loadImg() {
   })
 }
 ```
+
+# 通过IntersectionObserver实现
+
+```js
+export default {
+  install(Vue, options) {
+    Vue.directive('lazy', {
+      bind(el, binding) {
+        init(el, binding.value, options.loading)
+      },
+      inserted(el) {
+        observer(el)
+      }
+    })
+  }
+}
+
+// 初始化
+function init(el, src, loading) {
+  el.setAttribute('data-src', src)
+  el.setAttribute('src', loading)
+}
+
+// 利用IntersectionObserver监听el
+function observer(el) {
+  let observer = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting){ //进入视口
+      let realSrc=el.dataset.src
+      if (realSrc){
+        el.setAttribute('src',realSrc)
+        el.removeAttribute('data-src')
+      }
+    }
+  })
+  observer.observe(el)
+}
+```
+
+生成观察器实例：`let observer = new IntersectionObserver(callback,option)`
+
+接收两个参数，callback：可见性变化时的回调函数，option：可选的配置项
+
+callback：
+
+一般会触发两次。一次是目标元素刚刚进入视口（开始可见），另一次是完全离开视口（开始不可见）。
+
+```js
+let io = new IntersectionObserver(
+  entries => {
+    console.log(entries);
+  }
+)
+```
+
+enteries：是一个数组，每个成员是`IntersectionObserverEntry`对象，如果同时有多个被观察的对象的可见性发生变化，enteries数组就有多个成员。
+
+`IntersectionObserverEntry`对象的部分属性：
+
+- `isIntersecting`：是否可见
+- `time`：可见性发生变化的时间，是一个高精度时间戳，单位为毫秒
+- `boundingClientRect`：目标元素的矩形区域信息
+- `intersectionRatio`：目标元素的可见比例，完全可见时为`1`，完全不可见时小于等于`0`
+- `intersectionRect`：目标元素与视口（或根元素）的交叉区域的信息
+- `target`：目标元素
+- `rootBounds`：根元素的矩形区域的信息
+
+option对象属性：
+
+- `threshold`：数组，决定何时触发回调函数，比如，`[0, 0.25, 0.5, 0.75, 1]`就表示当目标元素 0%、25%、50%、75%、100% 可见时，会触发回调函数。
+- `root`、`rootMargin`：`root`属性指定目标元素所在的容器节点（即根元素）。注意，容器元素必须是目标元素的祖先节点。`rootMargin`属性。后者定义根元素的`margin`，用来扩展或缩小`rootBounds`这个矩形的大小，从而影响`intersectionRect`交叉区域的大小。它使用CSS的定义方法，比如`10px 20px 30px 40px`，表示 top、right、bottom 和 left 四个方向的值。
+
+
+
+
+
+[参考文档](https://www.ruanyifeng.com/blog/2016/11/intersectionobserver_api.html)
+
+[参考视频](https://www.bilibili.com/video/BV1gu411Z71r?t=1.7)
