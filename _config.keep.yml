@@ -90,7 +90,7 @@ local_search:
 
 #该配置项用于开启部分主题资源（JS 文件、字体文件等）的 CDN 加速功能。
 cdn:
-  enable: true
+  enable: false
 
 #该配置项用于开启主题的 PJAX 功能，带来单页应用的体验。
 pjax:
