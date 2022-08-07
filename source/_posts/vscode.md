@@ -11,6 +11,10 @@ tags:
 
 官网：[Visual Studio Code](https://code.visualstudio.com/)
 
+vscode又两种版本（user版和system版），默认下载user版。（其他下载中可选择版本，具体区别不明）
+
+安装时勾选上两个`通过Code打开`（可以右键文件或文件夹在vscode中打开）
+
 # 推荐扩展
 
 - Chinese (Simplified)  //适用于 VS Code 的中文（简体）语言包
@@ -20,9 +24,10 @@ tags:
 - GitLens — Git supercharged  //Git历史记录
 - Google Translate  //划词翻译
 - IntelliCode  //代码提示
-- markdownlint  //markdown
+- Live Server  //实时加载的本地服务器
+- markdownlint  //markdown格式化
 - Material Icon Theme  //图标主题
-- open in browser  //在浏览器打开
+- open in browser  //右键在浏览器中打开
 - Prettier - Code formatter  //Prettier格式化
 - Tabnine AI Autocomplete  //代码快速生成
 - Vue Language Features (Volar)  //Vue支持
