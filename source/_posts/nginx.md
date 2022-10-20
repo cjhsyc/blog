@@ -188,14 +188,14 @@ Worker处理和响应请求
 
 编辑nginx.conf：（如下是开头的两行）
 
-```
+```nginx
 #user  nobody;#该符号表示注释
 worker_processes  1;
 ```
 
 先不看带注释的配置：（最小配置文件）
 
-```
+```nginx
 worker_processes  1; #子进程个数
 events {
     worker_connections  1024; #单个子进程可接受的连接数
@@ -227,7 +227,7 @@ http {
 
 配置多个server：
 
-```
+```nginx
 server { 
     listen       80; 
     server_name  www.my.com; #(需在阿里云购买域名)
@@ -273,19 +273,21 @@ server_name:还可以使用正则表达式进行匹配
 
 配置反向代理：
 
-    server {
-        listen       80;
-        server_name  localhost;
-        location / { #在这里配置proxy_pass，且不需要root和index
-        	proxy_pass  http://www.qq.com; #指定服务器
-            #root   html;
-            #index  index.html index.htm;
-        }
-        error_page   500 502 503 504  /50x.html;
-        location = /50x.html {
-            root   html;
-        }
+```nginx
+server {
+    listen       80;
+    server_name  localhost;
+    location / { #在这里配置proxy_pass，且不需要root和index
+    	proxy_pass  http://www.qq.com; #指定服务器
+        #root   html;
+        #index  index.html index.htm;
     }
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   html;
+    }
+}
+```
 
 重新加载nginx：`systemctl reload nginx`
 
@@ -312,11 +314,13 @@ server_name:还可以使用正则表达式进行匹配
 
 反向代理多个服务器，当nginx接收到请求时，通过轮询的方式将请求转发给服务器（轮流）
 
+**作用**：通过负载均衡，将多个请求分摊到多台服务器上，相当于把一台服务器需要承担的负载量交给多台服务器处理，进而提高系统的吞吐率；另外如果其中某一台服务器挂掉，其他服务器还可以正常提供服务，以此来提高系统的可伸缩性与可靠性。
+
 按照之前的流程再克隆一个虚拟机，ip设置为192.168.181.130并修改index.html
 
 Xshell连接192.168.181.128，进行配置：
 
-```
+```nginx
 upstream httpds{ #upstream:对应多组服务器，httpds：自定名称
 	server 192.168.181.129;
 	server 192.168.181.130;
@@ -345,7 +349,7 @@ upstream和server同级
 
 - 权重 weight
 
-  ```
+  ```nginx
   upstream httpds{
   	server 192.168.181.129 weight=8; #添加weight：值越大，访问该服务器的概率越大
   	server 192.168.181.130 weight=2;
@@ -354,7 +358,7 @@ upstream和server同级
 
 - 下线 down
 
-  ```
+  ```nginx
   upstream httpds{
   	server 192.168.181.129 weight=8 down; #down：该服务器不会被访问（出现故障时下线该服务器）
   	server 192.168.181.130 weight=2;
@@ -363,7 +367,7 @@ upstream和server同级
 
 - 备用 backup
 
-  ```
+  ```nginx
   upstream httpds{
   	server 192.168.181.129 weight=8 down;
   	server 192.168.181.130 weight=2 backup; #backup：备用机，只有其他服务器都不可用时才会被使用
@@ -376,23 +380,27 @@ upstream和server同级
 
 将静态资源（比如图片、css、js）放在nginx上
 
+**作用**：将静态页面与动态页面或者静态内容接口和动态内容接口分开不同系统访问的架构设计方法，进而提升整个服务访问性能和可维护性。
+
 在nginx配置中的server下配置多个location即可（也可使用正则）：
 
-    location / {
-    	proxy_pass  192.168.181.129;
-    }
-    
-    # ~号表示开始正则匹配，*号表示不区分大小写
-    location ~*/(img|css|js) { #匹配根目录下的三种文件夹（img|css|js），优先级比location /高
-    	root html; #根目录：/usr/local/nginx/html/
-    	index index.html index.htm;
-    }
+```nginx
+location / {
+	proxy_pass  192.168.181.129;
+}
+
+# ~号表示开始正则匹配，*号表示不区分大小写
+location ~*/(img|css|js) { #匹配根目录下的三种文件夹（img|css|js），优先级比location /高
+	root html; #根目录：/usr/local/nginx/html/
+	index index.html index.htm;
+}
+```
 
 ## URLRewrite
 
 重写url，可以隐藏真实的url
 
-```
+```nginx
 location / {
 	rewrite  ^/([0-9]+).html$  /index.html?pageNum=$1  break;
 	proxy_pass  192.168.181.129;
@@ -411,6 +419,24 @@ rewrite  <正则>  <真实uri>  <标识>;
 - break #本条规则匹配完成即终止，不再匹配后面的任何规则 
 - redirect #返回302临时重定向，浏览器地址会显示跳转后的URL地址 
 - permanent #返回301永久重定向，浏览器地址栏会显示跳转后的URL地址
+
+## try_files
+
+按顺序检查文件是否存在，返回第一个找到的文件或文件夹，如果所有的文件或文件夹都找不到，会进行一个内部重定向到最后一个参数。
+
+```nginx
+location / {
+  root data;
+  index index.html index.htm;
+  try_files $uri $uri/ /index.html;
+}
+```
+
+查找逻辑：
+
+- 首先：检查 `data` 目录中是否存在 `api` 文件，如果存在，则返回文件；如果不存在，则进行下一步。
+- 其次：检查 `data` 目录中是否存在 `api/` 目录，如果存在，则在检查 `api/` 目录中是否存在 `index.html` 或者 `index.htm` 文件（由 `index` 指定）；如果存在，则返回该文件。如果不存在，则进行下一步。
+- 最后：检查 `data` 目录中是否存在 index.html 文件。如果存在，则返回文件；如果不存在，则返回 404。
 
 
 
