@@ -263,7 +263,7 @@ categories: [样式,less]
 
 ```less
 @import "./assets/style.less"
-@import (reference) "./assets/style.less"//添加reference后，未被调用的代码不加载
+@import (reference) "./assets/style.less" //添加reference后，未被调用的代码不加载
 ```
 
 

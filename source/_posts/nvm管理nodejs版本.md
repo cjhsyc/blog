@@ -1,7 +1,7 @@
 ---
 title: nvm管理nodejs版本
 date: 2022-07-23 14:43:29
-categories: [node]
+categories: nodejs
 tags:
 - node
 - nodejs

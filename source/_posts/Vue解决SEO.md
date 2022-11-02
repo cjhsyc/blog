@@ -1,13 +1,12 @@
 ---
 title: Vue解决SEO
 date: 2022-03-27 11:46:01
-categories: 
-- [服务端渲染,NUXT]
-- [SEO]
+categories: vue
 tags:
 - Vue
 - SEO
 - Nuxt
+- SSR
 ---
 
 # SEO：搜索引擎优化

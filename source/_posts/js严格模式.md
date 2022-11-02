@@ -40,7 +40,7 @@ console.log(b)//2
 
 ```javascript
 function test(a,a){
-    console.log(a)//undefined(第二个a),严格模式报错
+  console.log(a)//undefined(第二个a),严格模式报错
 }
 test(10)
 ```
@@ -49,15 +49,15 @@ test(10)
 
 ```javascript
 function test1(a) {
-    a = 20
-    console.log(arguments[0])//非严格模式:20,严格模式:10
+  a = 20
+  console.log(arguments[0])//非严格模式:20,严格模式:10
 }
 
 test1(10)
 
 function test2(a = 20) {//参数设置初始后自动开启严格模式
-    a = 30
-    console.log(arguments[0])//10
+  a = 30
+  console.log(arguments[0])//10
 }
 
 test2(10)
@@ -67,7 +67,7 @@ test2(10)
 
 ```javascript
 function test(){
-    console.log(this)//undefined
+  console.log(this)//undefined
 }
 test()
 ```
@@ -75,14 +75,14 @@ test()
 ### 不能使用arguments.callee和caller
 
 ```javascript
-    function test(){
-        console.log(arguments.callee === test)//true,严格模式无法使用
-        console.log(test.caller === out)//true,严格模式无法使用
-    }
-    function out(){
-        test()
-    }
-    out()
+function test(){
+  console.log(arguments.callee === test)//true,严格模式无法使用
+  console.log(test.caller === out)//true,严格模式无法使用
+}
+function out(){
+  test()
+}
+out()
 ```
 
 ## 不能使用eval()和with()
@@ -92,12 +92,12 @@ eval('var a=2')
 console.log(a)//2,严格模式无法使用
 
 const obj={
-    a:3
+  a:3
 }
 function test(){
-    with (obj) {//改变this指向
-        console.log(a)//3,严格模式无法使用
-    }
+  with (obj) {//改变this指向
+    console.log(a)//3,严格模式无法使用
+  }
 }
 test()
 ```

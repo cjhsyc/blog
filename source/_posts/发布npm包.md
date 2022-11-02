@@ -1,7 +1,7 @@
 ---
 title: 发布npm包
 date: 2022-08-06 17:15:13
-categories: [npm]
+categories: 前端工程化
 tags:
   - npm
   - package.json
