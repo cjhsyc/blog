@@ -1,7 +1,7 @@
 ---
 title: nginx
 date: 2022-03-30 22:13:33
-categories: 部署
+categories: 前端工程化
 tags: 
 - nginx
 - CentOS

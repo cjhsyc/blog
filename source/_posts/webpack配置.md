@@ -1,8 +1,8 @@
 ---
 title: webpack配置
 date: 2022-03-07 23:19:37
-tags: webpack
 categories: 前端工程化
+tags: webpack
 ---
 # webpack.config.js
 

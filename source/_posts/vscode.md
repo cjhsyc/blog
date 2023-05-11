@@ -1,7 +1,7 @@
 ---
 title: vscode
 date: 2022-06-18 15:40:50
-categories: [vscode]
+categories: 开发工具
 tags:
 - vscode
 - extension

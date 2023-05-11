@@ -1,7 +1,7 @@
 ---
 title: vue3使用tsx
 date: 2022-04-29 19:29:20
-categories: [vue3]
+categories: vue
 tags:
 - vue3
 - tsx

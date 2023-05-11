@@ -1,7 +1,7 @@
 ---
 title: vue3性能提升
 date: 2022-10-20 14:16:12
-categories: vue3
+categories: vue
 tags:
 - vue3
 - proxy

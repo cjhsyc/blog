@@ -1,7 +1,7 @@
 ---
 title: vue3使用router
 date: 2022-05-02 19:10:06
-categories: [vue3]
+categories: vue
 tags:
 - router
 - vue-router

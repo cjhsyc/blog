@@ -1,8 +1,8 @@
 ---
 title: less预处理语言
 date: 2022-03-08 13:50:07
+categories: css
 tags: less
-categories: [样式,less]
 ---
 
 # 变量

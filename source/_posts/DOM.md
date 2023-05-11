@@ -66,6 +66,34 @@ var dupNode = node.cloneNode(deep);
 - `dupNode`：克隆生成的副本节点
 - `deep` ：可选，是否采用深度克隆，如果为 `true`，则该节点的所有后代节点也都会被克隆，如果为 `false`，则只克隆该节点本身。在最新的规范里，其默认值为 false。
 
+### insertBefore
+
+在参考节点之前插入一个拥有指定父节点的子节点。如果给定的子节点是对文档中现有节点的引用，`insertBefore()` 会将其从当前位置移动到新位置（在将节点附加到其他节点之前，不需要从其父节点删除该节点）。
+
+若要保留已在文档中的被插入节点，在将该节点追加到新父节点之前，可以使用 `Node.cloneNode()` 复制节点。
+
+```js
+var insertedNode = parentNode.insertBefore(newNode, referenceNode);
+```
+
+- `insertedNode` ：被插入节点 (`newNode`)
+- `parentNode` ：新插入节点的父节点
+- `newNode` ：用于插入的节点
+- `referenceNode`： `newNode` 将要插在这个节点之前
+
+如果 `referenceNode` 为 `null` 则 `newNode` 将被插入到子节点的末尾。
+
+### nodeValue
+
+返回或设置当前节点的值。
+
+```js
+str = node.nodeValue;
+node.nodeValue = str;
+```
+
+value 是一个包含当前节点的值的字符串（如果有的话）。
+
 ### innerText
 
 表示一个节点及其后代的“渲染”文本内容。

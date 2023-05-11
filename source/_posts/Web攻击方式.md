@@ -1,7 +1,7 @@
 ---
 title: Web攻击方式
 date: 2022-10-22 17:07:56
-categories: JavaScript
+categories: web
 tags:
 - CSRF
 - XSS
